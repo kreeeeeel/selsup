@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.project'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-jackson', version: '2.9.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.3'
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs += "--add-opens=java.base/java.time=ALL-UNNAMED"
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs += "--add-opens=java.base/java.time=ALL-UNNAMED"
+}
